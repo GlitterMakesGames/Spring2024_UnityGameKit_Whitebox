@@ -15,14 +15,10 @@ namespace Gamekit3D
 
         private void OnTriggerEnter(Collider other)
         {
-            //Debug.Log("OnTriggerEnter has fired!");
             PlayerController controller = other.GetComponent<PlayerController>();
 
             if (controller == null)
-            {
-            Debug.LogError("No Player Controller Found!");
-            return;
-            }
+                return;
 
             controller.SetCheckpoint(this);
         }
