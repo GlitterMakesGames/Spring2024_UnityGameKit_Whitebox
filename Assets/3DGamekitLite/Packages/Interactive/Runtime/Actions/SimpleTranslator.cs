@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Gamekit3D.GameCommands
@@ -8,6 +9,7 @@ namespace Gamekit3D.GameCommands
         public new Rigidbody rigidbody;
         public Vector3 start = -Vector3.forward;
         public Vector3 end = Vector3.forward;
+        private bool firstTime = true;
 
         public override void PerformTransform(float position)
         {
@@ -21,6 +23,32 @@ namespace Gamekit3D.GameCommands
 
             if (m_Platform != null)
                 m_Platform.MoveCharacterController(deltaPosition);
+        }
+
+        // THE FOLLOWING CODE WAS ADDED BY DELAINA HARDWICK
+        // --------------------------------------------------------------//
+        // --------------------------------------------------------------//
+
+        private void Update()
+        {
+            if (activate == true && firstTime == true)
+            {
+                firstTime = false;
+                if (this.name == "Door C2")
+                {
+                    Debug.Log("The code I wrote works! #1");
+                    GameObject Key_F = GameObject.Find("Key F");
+                    Transform receptor = Key_F.transform.Find("KeyReceptor");
+                    receptor.position = new Vector3(receptor.position.x, 1, receptor.position.z);
+                }
+                else if (this.name == "Door F")
+                {
+                    Debug.Log("The code I wrote works! #2");
+                    GameObject Key_G = GameObject.Find("Key G");
+                    Transform receptor = Key_G.transform.Find("KeyReceptor");
+                    receptor.position = new Vector3(receptor.position.x, 1, receptor.position.z);
+                }
+            }
         }
     }
 }
